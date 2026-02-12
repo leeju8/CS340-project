@@ -14,7 +14,7 @@ app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
 
 
-const PORT = 5000;
+const PORT = 5555;
 
 // ########################################
 // ########## ROUTE HANDLERS
@@ -32,6 +32,58 @@ app.get('/bsg-people', async (req, res) => {
         const [homeworlds] = await db.query(query2);
     
         res.status(200).json({ people, homeworlds });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/subscriptions', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query = `SELECT Subscriptions.subscriptionID, Subscriptions.subscriptionName, Subscriptions.subscriptionCost, \
+            Features.featureID, Features.featureName, Features.featureDescription FROM Subscriptions \
+            INNER JOIN SubscriptionFeatures ON Subscriptions.subscriptionID = SubscriptionFeatures.subscriptionID \
+            INNER JOIN Features ON SubscriptionFeatures.featureID = Features.featureID \
+            ORDER BY Subscriptions.subscriptionID ASC;`;
+        const [subscriptions] = await db.query(query)
+    
+        res.status(200).json({ subscriptions });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/invoices', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query = `SELECT Invoices.invoiceID, Invoices.invoiceDate, Invoices.billingAddress, Invoices.userID, Invoices.subscriptionID FROM Invoices;`;
+        const [invoices] = await db.query(query)
+    
+        res.status(200).json({ invoices });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/users', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query = `SELECT * FROM Users;`;
+        const [invoices] = await db.query(query)
+    
+        res.status(200).json({ users });  // Send the results to the frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
