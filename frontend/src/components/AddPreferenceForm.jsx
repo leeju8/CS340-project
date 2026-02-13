@@ -2,7 +2,7 @@ const AddPreferenceForm = ({ preferences, users, backendURL, refreshPreferences 
 
     return (
         <>
-        <h2>Add a Preference</h2>
+        <h2>Add a Setting</h2>
 
         <form className='addPreferenceForm'>
             <label htmlFor="add_setting_user">User: </label>
