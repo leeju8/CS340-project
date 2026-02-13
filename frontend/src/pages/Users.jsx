@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';  // Importing useState for managing state in the component
 import TableRow from '../components/TableRow';
-import CreatePersonForm from '../components/CreatePersonForm';
-import UpdatePersonForm from '../components/UpdatePersonForm';
 import AddUserForm from '../components/AddUserForm';
 import UpdateUserForm from '../components/UpdateUserForm';
 
