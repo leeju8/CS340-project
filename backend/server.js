@@ -14,7 +14,7 @@ app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
 
 
-const PORT = 6025;
+const PORT = 6022;
 
 // ########################################
 // ########## ROUTE HANDLERS
@@ -43,7 +43,7 @@ app.get('/invoices', async (req, res) => {
     try {
         // Create and execute our queries
         const query1 = `SELECT Invoices.invoiceID, Invoices.invoiceDate, Invoices.billingAddress, Users.userID, Users.userName, Subscriptions.subscriptionID, Subscriptions.subscriptionName FROM Invoices \
-            INNER JOIN Users ON Invoices.userID = Users.userID \ 
+            INNER JOIN Users ON Invoices.userID = Users.userID \
             INNER JOIN Subscriptions ON Invoices.subscriptionID = Subscriptions.subscriptionID;`;
         const query2 = `SELECT * FROM Users;`;
         const query3 = `SELECT * FROM Subscriptions;`;
