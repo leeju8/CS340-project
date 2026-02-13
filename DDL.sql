@@ -78,10 +78,10 @@ INSERT INTO Subscriptions VALUES
 (3,'Max',10.00);
 
 INSERT INTO Users VALUES
-(1,'alice01','alice@example.com','871-8431',1),
-(2,'scott12','scott@gmail.com','541-5441',2),
-(3,'toliver03','toliver@yahoo.com',NULL,3),
-(4,'dave04','dave@outlook.com','808-1343',2);
+(1,'alice01','alice@example.com','333-871-8431',1),
+(2,'scott12','scott@gmail.com','111-541-5441',2),
+(3,'toliver03','toliver@yahoo.com','444-274-5271',3),
+(4,'dave04','dave@outlook.com','222-808-1343',2);
 
 INSERT INTO Features VALUES
 (1,'Basic Analytics','Access to basic usage analytics'),
