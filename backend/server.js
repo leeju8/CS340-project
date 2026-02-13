@@ -14,7 +14,7 @@ app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
 
 
-const PORT = 5555;
+const PORT = 5024;
 
 // ########################################
 // ########## ROUTE HANDLERS
