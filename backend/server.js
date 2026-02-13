@@ -20,38 +20,16 @@ const PORT = 5555;
 // ########## ROUTE HANDLERS
 
 // READ ROUTES
-app.get('/bsg-people', async (req, res) => {
+app.get('/users', async (req, res) => {
     try {
         // Create and execute our queries
-        // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query1 = `SELECT bsg_people.id, bsg_people.fname, bsg_people.lname, \
-            bsg_planets.name AS 'homeworld', bsg_people.age FROM bsg_people \
-            LEFT JOIN bsg_planets ON bsg_people.homeworld = bsg_planets.id;`;
-        const query2 = 'SELECT * FROM bsg_planets;';
-        const [people] = await db.query(query1);
-        const [homeworlds] = await db.query(query2);
+        const query1 = `SELECT Users.userID, Users.userName, Users.email, Users.phoneNumber, Subscriptions.subscriptionName FROM Users \
+            LEFT JOIN Subscriptions ON Users.subscriptionID = Subscriptions.subscriptionID;`;
+        const query2 = `SELECT * FROM Subscriptions;`;
+        const [users] = await db.query(query1)
+        const [subscriptions] = await db.query(query2)
     
-        res.status(200).json({ people, homeworlds });  // Send the results to the frontend
-
-    } catch (error) {
-        console.error("Error executing queries:", error);
-        // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
-    }
-    
-});
-
-app.get('/subscriptions', async (req, res) => {
-    try {
-        // Create and execute our queries
-        const query = `SELECT Subscriptions.subscriptionID, Subscriptions.subscriptionName, Subscriptions.subscriptionCost, \
-            Features.featureID, Features.featureName, Features.featureDescription FROM Subscriptions \
-            INNER JOIN SubscriptionFeatures ON Subscriptions.subscriptionID = SubscriptionFeatures.subscriptionID \
-            INNER JOIN Features ON SubscriptionFeatures.featureID = Features.featureID \
-            ORDER BY Subscriptions.subscriptionID ASC;`;
-        const [subscriptions] = await db.query(query)
-    
-        res.status(200).json({ subscriptions });  // Send the results to the frontend
+        res.status(200).json({ users, subscriptions });  // Send the results to the frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -64,10 +42,16 @@ app.get('/subscriptions', async (req, res) => {
 app.get('/invoices', async (req, res) => {
     try {
         // Create and execute our queries
-        const query = `SELECT Invoices.invoiceID, Invoices.invoiceDate, Invoices.billingAddress, Invoices.userID, Invoices.subscriptionID FROM Invoices;`;
-        const [invoices] = await db.query(query)
+        const query1 = `SELECT Invoices.invoiceID, Invoices.invoiceDate, Invoices.billingAddress, Users.userID, Users.userName, Subscriptions.subscriptionID, Subscriptions.subscriptionName FROM Invoices \
+            INNER JOIN Users ON Invoices.userID = Users.userID \ 
+            INNER JOIN Subscriptions ON Invoices.subscriptionID = Subscriptions.subscriptionID;`;
+        const query2 = `SELECT * FROM Users;`;
+        const query3 = `SELECT * FROM Subscriptions;`;
+        const [invoices] = await db.query(query1)
+        const [users] = await db.query(query2)
+        const [subscriptions] = await db.query(query3)
     
-        res.status(200).json({ invoices });  // Send the results to the frontend
+        res.status(200).json({ invoices, users, subscriptions });  // Send the results to the frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -77,13 +61,36 @@ app.get('/invoices', async (req, res) => {
     
 });
 
-app.get('/users', async (req, res) => {
+app.get('/subscriptions', async (req, res) => {
     try {
         // Create and execute our queries
-        const query = `SELECT * FROM Users;`;
-        const [invoices] = await db.query(query)
+        const query1 = `SELECT * FROM Subscriptions;`;
+        const query2 = `SELECT * FROM SubscriptionFeatures;`;
+        const query3 = `SELECT * FROM Features;`;
+        const [subscriptions] = await db.query(query1)
+        const [subscriptionFeatures] = await db.query(query2)
+        const [features] = await db.query(query3)
     
-        res.status(200).json({ users });  // Send the results to the frontend
+        res.status(200).json({ subscriptions, subscriptionFeatures, features });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/preferences', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query1 = `SELECT Users.userID, Users.userName, Preferences.settingID, Preferences.settingName, Preferences.settingValue FROM Preferences \
+            JOIN Users ON Preferences.userID = Users.userID;`;
+        const query2 = `SELECT * FROM Users;`;
+        const [preferences] = await db.query(query1)
+        const [users] = await db.query(query2)
+    
+        res.status(200).json({ preferences, users });  // Send the results to the frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
