@@ -11,8 +11,8 @@ const UpdatePreferenceForm = ({ preferences, users, backendURL, refreshPreferenc
             >
                 <option value="">Select a Setting</option>
                 {preferences.map((preferences) => (
-                    <option key={preferences.settingID} value={preferences.settingID}>
-                        {preferences.settingID} - {preferences.settingName}
+                    <option key={preferences["Setting ID"]} value={preferences["Setting ID"]}>
+                        {preferences["Setting ID"]} - {preferences["Setting Name"]}
                     </option>
                 ))}
             </select>

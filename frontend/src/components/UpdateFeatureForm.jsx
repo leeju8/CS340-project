@@ -11,8 +11,8 @@ const UpdateFeatureForm = ({ features, backendURL, refreshSubscriptions }) => {
             >
                 <option value="">Select a Feature</option>
                 {features.map((features) => (
-                    <option key={features.featureID} value={features.featureID}>
-                        {features.featureID} - {features.featureName}
+                    <option key={features["Feature ID"]} value={features["Feature ID"]}>
+                        {features["Feature ID"]} - {features["Feature Name"]}
                     </option>
                 ))}
             </select>

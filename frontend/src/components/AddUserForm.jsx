@@ -34,7 +34,7 @@ const AddUserForm = ({ users, subscriptions, backendURL, refreshUsers }) => {
             >
                 <option value="">Select a Subscription</option>
                 {subscriptions.map((subscriptions, index) => (
-                    <option value={subscriptions.subscriptionID} key={index}>{subscriptions.subscriptionName}</option>
+                    <option value={subscriptions["Subscription ID"]} key={index}>{subscriptions["Subscription Name"]}</option>
                 ))}
             </select>
 

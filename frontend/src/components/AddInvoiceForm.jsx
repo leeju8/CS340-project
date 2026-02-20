@@ -26,7 +26,7 @@ const AddInvoiceForm = ({ users, subscriptions, refreshInvoices }) => {
             >
                 <option value="">Select a User</option>
                 {users.map((users, index) => (
-                    <option value={users.userID} key={index}>{users.userName}</option>
+                    <option value={users["User ID"]} key={index}>{users["User ID"]}</option>
                 ))}
             </select>
 
@@ -37,7 +37,7 @@ const AddInvoiceForm = ({ users, subscriptions, refreshInvoices }) => {
             >
                 <option value="">Select a Subscription</option>
                 {subscriptions.map((subscriptions, index) => (
-                    <option value={subscriptions.subscriptionID} key={index}>{subscriptions.subscriptionName}</option>
+                    <option value={subscriptions["Subscription ID"]} key={index}>{subscriptions["Subscription Name"]}</option>
                 ))}
             </select>
 

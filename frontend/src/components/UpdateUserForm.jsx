@@ -11,8 +11,8 @@ const UpdateUserForm = ({ users, subscriptions, backendURL, refreshUsers }) => {
             >
                 <option value="">Select a User</option>
                 {users.map((users) => (
-                    <option key={users.userID} value={users.userID}>
-                        {users.userID} - {users.userName} 
+                    <option key={users["User ID"]} value={users["User ID"]}>
+                        {users["User ID"]} - {users["User Name"]}
                     </option>
                 ))}
             </select>
@@ -46,8 +46,8 @@ const UpdateUserForm = ({ users, subscriptions, backendURL, refreshUsers }) => {
             >
                 <option value="">Select a Subscription</option>
                 {subscriptions.map((subscriptions) => (
-                    <option key={subscriptions.subscriptionID} value={subscriptions.subscriptionID}>
-                        {subscriptions.subscriptionName}
+                    <option key={subscriptions["Subscription ID"]} value={subscriptions["Subscription ID"]}>
+                        {subscriptions["Subscription Name"]}
                     </option>
                 ))}
             </select>

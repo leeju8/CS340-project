@@ -12,8 +12,8 @@ const UpdateInvoiceForm = ({ invoices, users, subscriptions, backendURL, refresh
             >
                 <option value="">Select an Invoice</option>
                 {invoices.map((invoices) => (
-                    <option key={invoices.invoiceID} value={invoices.invoiceID}>
-                        {invoices.invoiceID} 
+                    <option key={invoices["Invoice ID"]} value={invoices["Invoice ID"]}>
+                        {invoices["Invoice ID"]}
                     </option>
                 ))}
             </select>
@@ -40,7 +40,7 @@ const UpdateInvoiceForm = ({ invoices, users, subscriptions, backendURL, refresh
             >
                 <option value="">Select a User</option>
                 {users.map((users, index) => (
-                    <option value={users.userID} key={index}>{users.userName}</option>
+                    <option value={users["User ID"]} key={index}>{users["User Name"]}</option>
                 ))}
             </select>
 
@@ -51,7 +51,7 @@ const UpdateInvoiceForm = ({ invoices, users, subscriptions, backendURL, refresh
             >
                 <option value="">Select a Subscription</option>
                 {subscriptions.map((subscriptions, index) => (
-                    <option value={subscriptions.subscriptionID} key={index}>{subscriptions.subscriptionName}</option>
+                    <option value={subscriptions["Subscription ID"]} key={index}>{subscriptions["Subscription Name"]}</option>
                 ))}
             </select>
 

@@ -11,8 +11,8 @@ const UpdateSubscriptionForm = ({ subscriptions, backendURL, refreshSubscription
             >
                 <option value="">Select a Subscription</option>
                 {subscriptions.map((subscriptions) => (
-                    <option key={subscriptions.subscriptionID} value={subscriptions.subscriptionID}>
-                        {subscriptions.subscriptionID} - {subscriptions.subscriptionName}
+                    <option key={subscriptions["Subscription ID"]} value={subscriptions["Subscription ID"]}>
+                        {subscriptions["Subscription ID"]} - {subscriptions["Subscription Name"]}
                     </option>
                 ))}
             </select>

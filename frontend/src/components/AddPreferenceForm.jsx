@@ -12,7 +12,7 @@ const AddPreferenceForm = ({ preferences, users, backendURL, refreshPreferences 
             >
                 <option value="">Select a User</option>
                 {users.map((users, index) => (
-                    <option value={users.userID} key={index}>{users.userName}</option>
+                    <option value={users["User ID"]} key={index}>{users["User Name"]}</option>
                 ))}
             </select>
 
