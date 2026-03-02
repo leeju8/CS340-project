@@ -62,7 +62,7 @@ BEGIN
 
     CREATE TABLE Invoices (
         invoiceID INT AUTO_INCREMENT PRIMARY KEY,
-        invoiceDate DATE NOT NULL,
+        invoiceDate DATETIME NOT NULL,
         billingAddress VARCHAR(255) NOT NULL,
         userID INT NOT NULL,
         subscriptionID INT NOT NULL,
