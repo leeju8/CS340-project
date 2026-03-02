@@ -2,6 +2,7 @@ function Navigation() {
     return (
         <nav>
             Navigation:
+            <button type="button">RESET TABLES</button>
             <a href="/">Home</a>
             <a href="/users">Users</a>
             <a href="/invoices">Invoices</a>

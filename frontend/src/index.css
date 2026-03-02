@@ -26,4 +26,5 @@ tr:nth-child(even) {background-color: #000000;}
 input, select { margin-bottom: 4px;margin-right: 12px;}
 nav {background-color: #000000;padding: 16px;}
 a {margin-left: 16px;}
+button {margin-left: 16px;}
 .homepageDescription {margin-left: 32px;}
