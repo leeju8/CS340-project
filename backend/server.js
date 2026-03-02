@@ -19,6 +19,8 @@ const PORT = 6022;
 // ########################################
 // ########## ROUTE HANDLERS
 
+// CREATE ROUTES
+
 // READ ROUTES
 app.get('/users', async (req, res) => {
     try {
@@ -36,7 +38,6 @@ app.get('/users', async (req, res) => {
         // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
-    
 });
 
 app.get('/invoices', async (req, res) => {
@@ -97,8 +98,25 @@ app.get('/preferences', async (req, res) => {
         // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
-    
 });
+
+// UPDATE ROUTES
+app.post('/reset', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query = `CALL sp_reset_tables()`;
+        const [reset_status] = await db.query(query)
+    
+        res.status(200).json({ reset_status });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// DELETE ROUTES
 
 // ########################################
 // ########## LISTENER
