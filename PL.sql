@@ -113,3 +113,61 @@ BEGIN
     COMMIT;
 END //
 DELIMITER ;
+
+-- =====================================================
+-- UNIVERSAL DELETE PROCEDURE (CUD Demonstration)
+-- Demonstrates dynamic SQL and referential integrity
+-- =====================================================
+
+DROP PROCEDURE IF EXISTS sp_universal_delete;
+DELIMITER //
+
+CREATE PROCEDURE sp_universal_delete(
+    IN p_table_name VARCHAR(64),
+    IN p_id INT
+)
+BEGIN
+    DECLARE v_pk_column VARCHAR(64);
+    DECLARE v_table_exists INT;
+
+    -- Validate table exists
+    SELECT COUNT(*)
+    INTO v_table_exists
+    FROM INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_SCHEMA = DATABASE()
+    AND TABLE_NAME = p_table_name;
+
+    IF v_table_exists = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid table name.';
+    END IF;
+
+    -- Map table to primary key column
+    CASE p_table_name
+        WHEN 'Subscriptions' THEN SET v_pk_column = 'subscriptionID';
+        WHEN 'Users' THEN SET v_pk_column = 'userID';
+        WHEN 'Features' THEN SET v_pk_column = 'featureID';
+        WHEN 'Preferences' THEN SET v_pk_column = 'settingID';
+        WHEN 'Invoices' THEN SET v_pk_column = 'invoiceID';
+        ELSE
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Delete not supported for this table.';
+    END CASE;
+
+    -- Build and execute dynamic DELETE
+    SET @sql = CONCAT(
+        'DELETE FROM ',
+        p_table_name,
+        ' WHERE ',
+        v_pk_column,
+        ' = ?'
+    );
+
+    PREPARE stmt FROM @sql;
+    SET @id_value = p_id;
+    EXECUTE stmt USING @id_value;
+    DEALLOCATE PREPARE stmt;
+
+END //
+
+DELIMITER ;
