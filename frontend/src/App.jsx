@@ -19,7 +19,7 @@ function App() {
 
     return (
         <>
-            <Navigation />
+            <Navigation backendURL={backendURL} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/users" element={<Users backendURL={backendURL}/>} />
