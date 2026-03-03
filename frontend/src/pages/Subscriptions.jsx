@@ -61,7 +61,7 @@ function Subscriptions({ backendURL }) {
 
                         <tbody>
                             {subscriptions.map((subscriptions, index) => (
-                                <TableRow key={index} rowObject={subscriptions} backendURL={backendURL} refreshObject={getData} tableName={tableName}/>
+                                <TableRow key={index} rowObject={subscriptions} backendURL={backendURL} refreshObject={getData} tableName="Subscriptions"/>
                             ))}
 
                         </tbody>
@@ -113,7 +113,7 @@ function Subscriptions({ backendURL }) {
 
                         <tbody>
                             {features.map((features, index) => (
-                                <TableRow key={index} rowObject={features} backendURL={backendURL} refreshSubscriptions={getData}/>
+                                <TableRow key={index} rowObject={features} backendURL={backendURL} refreshObject={getData} tableName="Features"/>
                             ))}
 
                         </tbody>
