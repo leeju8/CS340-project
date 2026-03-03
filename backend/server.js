@@ -117,6 +117,24 @@ app.post('/reset', async (req, res) => {
 });
 
 // DELETE ROUTES
+app.delete('/delete', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const { table, id } = req.query;
+        if (!table || !id) {
+            return res.status(400).send("Missing 'table' or 'id' query parameter.");
+        }
+
+        // Call the stored procedure
+        const query = `CALL sp_universal_delete(?, ?)`;
+        const [result] = await db.query(query, [table, id]);
+        res.status(200).json({ result });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
 
 // ########################################
 // ########## LISTENER
