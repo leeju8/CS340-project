@@ -49,7 +49,7 @@ function Users({ backendURL }) {
 
                 <tbody>
                     {users.map((users, index) => (
-                        <TableRow key={index} rowObject={users} backendURL={backendURL} refreshUsers={getData}/>
+                        <TableRow key={index} rowObject={users} backendURL={backendURL} refreshObject={getData} tableName="Users"/>
                     ))}
 
                 </tbody>

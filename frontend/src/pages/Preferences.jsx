@@ -48,7 +48,7 @@ function Preferences({ backendURL }) {
 
                 <tbody>
                     {preferences.map((preferences, index) => (
-                        <TableRow key={index} rowObject={preferences} backendURL={backendURL} refreshPreferences={getData}/>
+                        <TableRow key={index} rowObject={preferences} backendURL={backendURL} refreshObject={getData} tableName="Preferences"/>
                     ))}
 
                 </tbody>

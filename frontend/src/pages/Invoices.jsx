@@ -50,7 +50,7 @@ function Invoices({ backendURL }) {
 
                 <tbody>
                     {invoices.map((invoices, index) => (
-                        <TableRow key={index} rowObject={invoices} backendURL={backendURL} refreshInvoices={getData}/>
+                        <TableRow key={index} rowObject={invoices} backendURL={backendURL} refreshObject={getData} tableName="Invoices"/>
                     ))}
 
                 </tbody>
