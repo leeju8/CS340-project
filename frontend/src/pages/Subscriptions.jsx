@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';  // Importing useState for managing state in the component
 import TableRow from '../components/TableRow';
+import TableRowNoDelete from '../components/TableRowNoDelete';
 import AddSubscriptionForm from '../components/AddSubscriptionForm';
 import UpdateSubscriptionForm from '../components/UpdateSubscriptionForm';
 
@@ -86,7 +87,7 @@ function Subscriptions({ backendURL }) {
 
                         <tbody>
                             {subscriptionFeatures.map((subscriptionFeatures, index) => (
-                                <TableRow key={index} rowObject={subscriptionFeatures} backendURL={backendURL} refreshSubscriptions={getData}/>
+                                <TableRowNoDelete key={index} rowObject={subscriptionFeatures} backendURL={backendURL} refreshSubscriptions={getData}/>
                             ))}
 
                         </tbody>
