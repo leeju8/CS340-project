@@ -60,6 +60,21 @@ app.post('/subscriptions/features', async (req, res) => {
     }
 });
 
+app.post('/reset', async (req, res) => {
+    try {
+        // Create and execute our queries
+        const query = `CALL sp_reset_tables()`;
+        const [reset_status] = await db.query(query)
+    
+        res.status(200).json({ reset_status });  // Send the results to the frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
 // READ ROUTES
 app.get('/users', async (req, res) => {
     try {
@@ -146,18 +161,17 @@ app.get('/preferences', async (req, res) => {
 });
 
 // UPDATE ROUTES
-app.post('/reset', async (req, res) => {
+app.put('/features', async (req, res) => {
     try {
-        // Create and execute our queries
-        const query = `CALL sp_reset_tables()`;
-        const [reset_status] = await db.query(query)
-    
-        res.status(200).json({ reset_status });  // Send the results to the frontend
-
+        // Call the stored procedure
+        const { featureID, featureName, featureDescription } = req.body
+        const query = `CALL sp_update_feature(?, ?, ?)`;
+        const result = await db.query(query, [featureID, featureName, featureDescription]);
+        res.status(200).json({ result });
     } catch (error) {
         console.error("Error executing queries:", error);
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).send("An error occurred while executing the database queries."); 
     }
 });
 
