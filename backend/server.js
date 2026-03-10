@@ -25,11 +25,12 @@ const PORT = 6022;
 app.get('/users', async (req, res) => {
     try {
         // Create and execute our queries
-        const query1 = `SELECT Users.userID AS "User ID", Users.userName AS "User Name", Users.email AS "Email", Users.phoneNumber AS "Phone Number", Subscriptions.subscriptionName AS "Subscription Name" FROM Users \
-            LEFT JOIN Subscriptions ON Users.subscriptionID = Subscriptions.subscriptionID;`;
-        const query2 = `SELECT Subscriptions.subscriptionName AS "Subscription Name" FROM Subscriptions;`;
-        const [users] = await db.query(query1)
-        const [subscriptions] = await db.query(query2)
+        const query1 = `CALL sp_select_users_table()`;
+        const query2 = `CALL sp_select_users_table_helper()`;
+        const [usersResult] = await db.query(query1);
+        const users = usersResult[0];
+        const [subscriptionsResult] = await db.query(query2);
+        const subscriptions = subscriptionsResult[0];
     
         res.status(200).json({ users, subscriptions });  // Send the results to the frontend
 

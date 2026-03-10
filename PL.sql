@@ -1,6 +1,29 @@
 -- Stored Procedures
 
 -- =====================================================
+-- SELECT PROCEDURES
+-- =====================================================
+-- Users table
+DROP PROCEDURE IF EXISTS sp_select_users_table;
+DELIMITER //
+CREATE PROCEDURE sp_select_users_table()
+BEGIN
+    SELECT Users.userID AS "User ID", Users.userName AS "User Name", Users.email AS "Email", Users.phoneNumber AS "Phone Number", Subscriptions.subscriptionName AS "Subscription Name" FROM Users \
+        LEFT JOIN Subscriptions ON Users.subscriptionID = Subscriptions.subscriptionID;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_select_users_table_helper;
+DELIMITER //
+CREATE PROCEDURE sp_select_users_table_helper()
+BEGIN
+    SELECT Subscriptions.subscriptionName AS "Subscription Name" FROM Subscriptions;
+END //
+DELIMITER ;
+
+
+
+-- =====================================================
 -- RESET TABLES PROCEDURE
 -- =====================================================
 DROP PROCEDURE IF EXISTS sp_reset_tables;
