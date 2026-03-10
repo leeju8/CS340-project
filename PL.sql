@@ -273,7 +273,7 @@ DELIMITER //
 
 CREATE PROCEDURE sp_create_feature(
     IN feature_name VARCHAR(50),
-    IN feature_description varchar(255)
+    IN feature_description VARCHAR(255)
 )
 BEGIN
     -- SQL and procedural logic
@@ -288,7 +288,7 @@ DELIMITER //
 
 CREATE PROCEDURE sp_create_subscription(
     IN subscription_name VARCHAR(50),
-    IN subscription_cost decimal(6, 2)
+    IN subscription_cost DECIMAL(6, 2)
 )
 BEGIN
     -- SQL and procedural logic
@@ -302,12 +302,67 @@ DROP PROCEDURE IF EXISTS sp_create_subscription_feature;
 DELIMITER //
 
 CREATE PROCEDURE sp_create_subscription_feature(
-    IN subscription_id int(11),
-    IN feature_id int(11)
+    IN subscription_id INT(11),
+    IN feature_id INT(11)
 )
 BEGIN
     -- SQL and procedural logic
     INSERT INTO SubscriptionFeatures (subscriptionID, featureID)
         VALUES (subscription_id, feature_id);
+END //
+DELIMITER ;
+
+-- =====================================================
+-- UPDATE PROCEDURES
+-- =====================================================
+-- Features table
+DROP PROCEDURE IF EXISTS sp_update_feature;
+DELIMITER //
+
+CREATE PROCEDURE sp_update_feature(
+    IN feature_id INT(11),
+    IN feature_name VARCHAR(50),
+    IN feature_description VARCHAR(255)
+)
+BEGIN
+    -- SQL and procedural logic
+    UPDATE Features
+    SET featureName = feature_name, featureDescription = feature_description
+    WHERE featureID = feature_id;
+END //
+DELIMITER ;
+
+-- Subscriptions table
+DROP PROCEDURE IF EXISTS sp_update_subscription;
+DELIMITER //
+
+CREATE PROCEDURE sp_update_subscription(
+    IN subscription_id INT(11),
+    IN subscription_name VARCHAR(50),
+    IN subscription_cost DECIMAL(6, 2)
+)
+BEGIN
+    -- SQL and procedural logic
+    UPDATE Subscriptions
+    SET subscriptionName = subscription_name, subscriptionCost = subscription_cost
+    WHERE subscriptionID = subscription_id;
+END //
+DELIMITER ;
+
+-- SubscriptionsFeatures table
+DROP PROCEDURE IF EXISTS sp_update_subscription_feature;
+DELIMITER //
+
+CREATE PROCEDURE sp_update_subscription_feature(
+    IN old_subscription_id INT(11),
+    IN old_feature_id INT(11),
+    IN new_subscription_id INT(11),
+    IN new_feature_id INT(11)
+)
+BEGIN
+    -- SQL and procedural logic
+    UPDATE SubscriptionFeatures
+    SET subscriptionID = new_subscription_id, featureID = new_feature_id
+    WHERE subscriptionID = old_subscription_id AND featureID = old_feature_id;
 END //
 DELIMITER ;
