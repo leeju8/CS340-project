@@ -31,19 +31,23 @@ const AddFeatureForm = ({ features, backendURL, refreshFeatures }) => {
         <h2>Add a Feature</h2>
 
         <form className='addFeatureForm' onSubmit={handleSubmit}>
-            <label htmlFor="add_feature_name">Feature Name: </label>
-            <input value={featureName} onChange={(e) => setFeatureName(e.target.value)}
-                type="text"
-                name="add_feature_name"
-                id="add_feature_name"
-            />
+            <div>
+                <label htmlFor="add_feature_name">Feature Name: </label>
+                <input value={featureName} onChange={(e) => setFeatureName(e.target.value)}
+                    type="text"
+                    name="add_feature_name"
+                    id="add_feature_name"
+                />
+            </div>
 
-            <label htmlFor="add_feature_description">Feature Description: </label>
-            <input value={featureDescription} onChange={(e) => setFeatureDescription(e.target.value)}
-                type="text"
-                name="add_feature_description"
-                id="add_feature_description"
-            />
+            <div>
+                <label htmlFor="add_feature_description">Feature Description: </label>
+                <input value={featureDescription} onChange={(e) => setFeatureDescription(e.target.value)}
+                    type="text"
+                    name="add_feature_description"
+                    id="add_feature_description"
+                />
+            </div>
 
             <input type="submit" />
         </form>

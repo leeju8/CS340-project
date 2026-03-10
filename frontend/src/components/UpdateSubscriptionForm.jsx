@@ -32,34 +32,40 @@ const UpdateSubscriptionForm = ({ subscriptions, backendURL, refreshSubscription
         <>
         <h2>Update a Subscription</h2>
         <form className='updateSubscriptionForm' onSubmit={handleSubmit}>
-            <label htmlFor="update_subscription_name">Subscription to Update: </label>
-            <select
-                name="update_subscription_name"
-                id="update_subscription_name"
-                value={subscriptionID}
-                onChange={(e) => setSubscriptionID(e.target.value)}
-            >
-                <option value="">Select a Subscription</option>
-                {subscriptions.map((subscriptions) => (
-                    <option key={subscriptions["Subscription ID"]} value={subscriptions["Subscription ID"]}>
-                        {subscriptions["Subscription ID"]} - {subscriptions["Subscription Name"]}
-                    </option>
-                ))}
-            </select>
+            <div>
+                <label htmlFor="update_subscription_name">Subscription to Update: </label>
+                <select
+                    name="update_subscription_name"
+                    id="update_subscription_name"
+                    value={subscriptionID}
+                    onChange={(e) => setSubscriptionID(e.target.value)}
+                >
+                    <option value="">Select a Subscription</option>
+                    {subscriptions.map((subscriptions) => (
+                        <option key={subscriptions["Subscription ID"]} value={subscriptions["Subscription ID"]}>
+                            {subscriptions["Subscription ID"]} - {subscriptions["Subscription Name"]}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <label htmlFor="update_subscription_name">Subscription Name: </label>
-            <input value={subscriptionName} onChange={(e) => setSubscriptionName(e.target.value)}
-                type="text"
-                name="update_subscription_name"
-                id="update_subscription_name"
-            />
+            <div>
+                <label htmlFor="update_subscription_name">Subscription Name: </label>
+                <input value={subscriptionName} onChange={(e) => setSubscriptionName(e.target.value)}
+                    type="text"
+                    name="update_subscription_name"
+                    id="update_subscription_name"
+                />
+            </div>
 
-            <label htmlFor="update_subscription_cost">Subscription Cost: </label>
-            <input value={subscriptionCost} onChange={(e) => setSubscriptionCost(e.target.value)}
-                type="text"
-                name="update_subscription_cost"
-                id="update_subscription_cost"
-            />
+            <div>
+                <label htmlFor="update_subscription_cost">Subscription Cost: </label>
+                <input value={subscriptionCost} onChange={(e) => setSubscriptionCost(e.target.value)}
+                    type="text"
+                    name="update_subscription_cost"
+                    id="update_subscription_cost"
+                />
+            </div>
 
             <input type="submit" />
         </form>

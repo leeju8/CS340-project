@@ -31,19 +31,23 @@ const AddSubscriptionForm = ({ subscriptions, backendURL, refreshSubscriptions }
         <h2>Add a Subscription</h2>
 
         <form className='addSubscriptionForm' onSubmit={handleSubmit}>
-            <label htmlFor="add_subscription_name">Subscription Name: </label>
-            <input value={subscriptionName} onChange={(e) => setSubscriptionName(e.target.value)}
-                type="text"
-                name="add_subscription_name"
-                id="add_subscription_name"
-            />
+            <div>
+                <label htmlFor="add_subscription_name">Subscription Name: </label>
+                <input value={subscriptionName} onChange={(e) => setSubscriptionName(e.target.value)}
+                    type="text"
+                    name="add_subscription_name"
+                    id="add_subscription_name"
+                />
+            </div>
 
-            <label htmlFor="add_subscription_cost">Subscription Cost: </label>
-            <input value={subscriptionCost} onChange={(e) => setSubscriptionCost(e.target.value)}
-                type="text"
-                name="add_subscription_name"
-                id="add_subscription_name"
-            />
+            <div>
+                <label htmlFor="add_subscription_cost">Subscription Cost: </label>
+                <input value={subscriptionCost} onChange={(e) => setSubscriptionCost(e.target.value)}
+                    type="text"
+                    name="add_subscription_name"
+                    id="add_subscription_name"
+                />
+            </div>
 
             <input type="submit" />
         </form>

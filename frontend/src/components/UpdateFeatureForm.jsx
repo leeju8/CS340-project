@@ -32,35 +32,41 @@ const UpdateFeatureForm = ({ features, backendURL, refreshFeatures }) => {
         <>
         <h2>Update a Feature</h2>
         <form className='updateFeatureForm' onSubmit={handleSubmit}>
-            <label htmlFor="update_feature_name">Feature to Update: </label>
-            <select
-                name="update_feature_name"
-                id="update_feature_name"
-                value={featureID}
-                onChange={(e) => setFeatureID(e.target.value)}
-            >
-                <option value="">Select a Feature</option>
-                {features.map((features) => (
-                    <option key={features["Feature ID"]} value={features["Feature ID"]}>
-                        {features["Feature ID"]} - {features["Feature Name"]}
-                    </option>
-                ))}
-            </select>
+            <div>
+                <label htmlFor="update_feature_name">Feature to Update: </label>
+                <select
+                    name="update_feature_name"
+                    id="update_feature_name"
+                    value={featureID}
+                    onChange={(e) => setFeatureID(e.target.value)}
+                >
+                    <option value="">Select a Feature</option>
+                    {features.map((features) => (
+                        <option key={features["Feature ID"]} value={features["Feature ID"]}>
+                            {features["Feature ID"]} - {features["Feature Name"]}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <label htmlFor="update_feature_name">Feature Name: </label>
-            <input value={featureName} onChange={(e) => setFeatureName(e.target.value)}
-                type="text"
-                name="update_feature_name"
-                id="update_feature_name"
+            <div>
+                <label htmlFor="update_feature_name">Feature Name: </label>
+                <input value={featureName} onChange={(e) => setFeatureName(e.target.value)}
+                    type="text"
+                    name="update_feature_name"
+                    id="update_feature_name"
 
-            />
+                />
+            </div>
 
-            <label htmlFor="update_feature_description">Feature Description: </label>
-            <input value={featureDescription} onChange={(e) => setFeatureDescription(e.target.value)}
-                type="text"
-                name="update_feature_description"
-                id="update_feature_description"
-            />
+            <div>
+                <label htmlFor="update_feature_description">Feature Description: </label>
+                <input value={featureDescription} onChange={(e) => setFeatureDescription(e.target.value)}
+                    type="text"
+                    name="update_feature_description"
+                    id="update_feature_description"
+                />
+            </div>
 
             <input type="submit" />
         </form>
