@@ -296,3 +296,18 @@ BEGIN
         VALUES (subscription_name, subscription_cost);
 END //
 DELIMITER ;
+
+-- SubscriptionFeatures table
+DROP PROCEDURE IF EXISTS sp_create_subscription_feature;
+DELIMITER //
+
+CREATE PROCEDURE sp_create_subscription_feature(
+    IN subscription_id int(11),
+    IN feature_id int(11)
+)
+BEGIN
+    -- SQL and procedural logic
+    INSERT INTO SubscriptionFeatures (subscriptionID, featureID)
+        VALUES (subscription_id, feature_id);
+END //
+DELIMITER ;
