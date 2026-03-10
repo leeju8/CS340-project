@@ -5,7 +5,7 @@ const UpdateSubscriptionFeatureForm = ({ subscriptions, features, backendURL, re
         <h2>Update a SubscriptionFeature</h2>
 
         <form className='updateSubscriptionFeatureForm'>
-            <label htmlFor="update_subscription_feature_subscription_id">Subscription to Update: </label>
+            <label htmlFor="update_subscription_feature_subscription_id">Subscription ID to Update: </label>
             <select
                 name="update_subscription_feature_subscription_id"
                 id="update_subscription_feature_subscription_id"
@@ -18,7 +18,7 @@ const UpdateSubscriptionFeatureForm = ({ subscriptions, features, backendURL, re
                 ))}
             </select>
 
-            <label htmlFor="update_subscription_feature_feature_id">Feature to Update: </label>
+            <label htmlFor="update_subscription_feature_feature_id">Feature ID to Update: </label>
             <select
                 name="update_subscription_feature_feature_id"
                 id="update_subscription_feature_feature_id"
