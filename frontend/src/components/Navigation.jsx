@@ -6,7 +6,6 @@ function Navigation({ backendURL }) {
           });
 
           if (response.ok) {
-              alert('Tables reset successfully.');
               // Optional: force reload so all pages re-fetch data
               window.location.reload();
           } else {
