@@ -93,8 +93,8 @@ function Subscriptions({ backendURL }) {
                         </tbody>
                     </table>
 
-                    <AddSubscriptionFeatureForm subscriptions={subscriptions} features={features} backendURL={backendURL} refreshSubscriptions={getData} />
-                    <UpdateSubscriptionFeatureForm subscriptions={subscriptions} features={features} backendURL={backendURL} refreshSubscriptions={getData} />
+                    <AddSubscriptionFeatureForm subscriptions={subscriptions} features={features} backendURL={backendURL} refreshSubscriptionFeatures={getData} />
+                    <UpdateSubscriptionFeatureForm subscriptions={subscriptions} features={features} backendURL={backendURL} refreshSubscriptionFeatures={getData} />
 
                 </div>
 
@@ -119,8 +119,8 @@ function Subscriptions({ backendURL }) {
                         </tbody>
                     </table>
 
-                    <AddFeatureForm features={features} backendURL={backendURL} refreshSubscriptions={getData} />
-                    <UpdateFeatureForm features={features} backendURL={backendURL} refreshSubscriptions={getData} />
+                    <AddFeatureForm features={features} backendURL={backendURL} refreshFeatures={getData} />
+                    <UpdateFeatureForm features={features} backendURL={backendURL} refreshFeatures={getData} />
 
                 </div>
 

@@ -262,5 +262,21 @@ BEGIN
     DEALLOCATE PREPARE stmt;
 
 END //
+DELIMITER ;
 
+-- =====================================================
+-- CREATE PROCEDURES
+-- =====================================================
+DROP PROCEDURE IF EXISTS sp_create_feature;
+DELIMITER //
+
+CREATE PROCEDURE sp_create_feature(
+    IN feature_name VARCHAR(50),
+    IN feature_description varchar(255)
+)
+BEGIN
+    -- SQL and procedural logic
+    INSERT INTO Features (featureName, featureDescription)
+        VALUES (feature_name, feature_description);
+END //
 DELIMITER ;
