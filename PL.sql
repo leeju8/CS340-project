@@ -48,6 +48,33 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Subscriptions table
+DROP PROCEDURE IF EXISTS sp_select_subscriptions_table;
+DELIMITER //
+CREATE PROCEDURE sp_select_subscriptions_table()
+BEGIN
+    SELECT Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name", Subscriptions.subscriptionCost AS "Subscription Cost" FROM Subscriptions;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_select_subscriptions_table_helper1;
+DELIMITER //
+CREATE PROCEDURE sp_select_subscriptions_table_helper1()
+BEGIN
+    SELECT SubscriptionFeatures.subscriptionID AS "Subscription ID", SubscriptionFeatures.featureID AS "Feature ID" FROM SubscriptionFeatures;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_select_subscriptions_table_helper2;
+DELIMITER //
+CREATE PROCEDURE sp_select_subscriptions_table_helper2()
+BEGIN
+    SELECT Features.featureID AS "Feature ID", Features.featureName AS "Feature Name", Features.featureDescription AS "Feature Description" FROM Features;
+END //
+DELIMITER ;
+
+-- Features table
+
 -- =====================================================
 -- RESET TABLES PROCEDURE
 -- =====================================================

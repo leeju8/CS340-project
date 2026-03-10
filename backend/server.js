@@ -67,12 +67,15 @@ app.get('/invoices', async (req, res) => {
 app.get('/subscriptions', async (req, res) => {
     try {
         // Create and execute our queries
-        const query1 = `SELECT Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name", Subscriptions.subscriptionCost AS "Subscription Cost" FROM Subscriptions;`;
-        const query2 = `SELECT SubscriptionFeatures.subscriptionID AS "Subscription ID", SubscriptionFeatures.featureID AS "Feature ID" FROM SubscriptionFeatures;`;
-        const query3 = `SELECT Features.featureID AS "Feature ID", Features.featureName AS "Feature Name", Features.featureDescription AS "Feature Description" FROM Features;`;
-        const [subscriptions] = await db.query(query1)
-        const [subscriptionFeatures] = await db.query(query2)
-        const [features] = await db.query(query3)
+        const query1 = `CALL sp_select_subscriptions_table()`;
+        const query2 = `CALL sp_select_subscriptions_table_helper1()`;
+        const query3 = `CALL sp_select_subscriptions_table_helper2()`;
+        const [subscriptionsResult] = await db.query(query1);
+        const subscriptions = subscriptionsResult[0];
+        const [subscriptionFeaturesResult] = await db.query(query2);
+        const subscriptionFeatures = subscriptionFeaturesResult[0];
+        const [featuresResult] = await db.query(query3);
+        const features = featuresResult[0];
     
         res.status(200).json({ subscriptions, subscriptionFeatures, features });  // Send the results to the frontend
 
