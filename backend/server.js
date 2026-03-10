@@ -189,6 +189,20 @@ app.put('/subscriptions', async (req, res) => {
     }
 });
 
+app.put('/subscriptions/features', async (req, res) => {
+    try {
+        // Call the stored procedure
+        const { oldSubscriptionID, oldFeatureID, newSubscriptionID, newFeatureID } = req.body
+        const query = `CALL sp_update_subscription_feature(?, ?, ?, ?)`;
+        const result = await db.query(query, [oldSubscriptionID, oldFeatureID, newSubscriptionID, newFeatureID]);
+        res.status(200).json({ result });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries."); 
+    }
+});
+
 // DELETE ROUTES
 app.delete('/delete', async (req, res) => {
     try {
