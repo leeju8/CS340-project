@@ -267,6 +267,7 @@ DELIMITER ;
 -- =====================================================
 -- CREATE PROCEDURES
 -- =====================================================
+-- Features table
 DROP PROCEDURE IF EXISTS sp_create_feature;
 DELIMITER //
 
@@ -278,5 +279,20 @@ BEGIN
     -- SQL and procedural logic
     INSERT INTO Features (featureName, featureDescription)
         VALUES (feature_name, feature_description);
+END //
+DELIMITER ;
+
+-- Subscriptions table
+DROP PROCEDURE IF EXISTS sp_create_subscription;
+DELIMITER //
+
+CREATE PROCEDURE sp_create_subscription(
+    IN subscription_name VARCHAR(50),
+    IN subscription_cost decimal(6, 2)
+)
+BEGIN
+    -- SQL and procedural logic
+    INSERT INTO Subscriptions (subscriptionName, subscriptionCost)
+        VALUES (subscription_name, subscription_cost);
 END //
 DELIMITER ;

@@ -34,6 +34,19 @@ app.post('/features', async (req, res) => {
     }
 });
 
+app.post('/subscriptions', async (req, res) => {
+    try {
+        const { subscriptionName, subscriptionCost } = req.body
+        const query = `CALL sp_create_subscription(?, ?)`;
+        const result = await db.query(query, [subscriptionName, subscriptionCost]);
+        res.status(200).json({result});
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries."); 
+    }
+});
+
 // READ ROUTES
 app.get('/users', async (req, res) => {
     try {
