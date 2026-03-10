@@ -90,11 +90,12 @@ app.get('/subscriptions', async (req, res) => {
 app.get('/preferences', async (req, res) => {
     try {
         // Create and execute our queries
-        const query1 = `SELECT Users.userID AS "User ID", Users.userName AS "User Name", Preferences.settingID AS "Setting ID", Preferences.settingName AS "Setting Name", Preferences.settingValue AS "Setting Value" FROM Preferences \
-            JOIN Users ON Preferences.userID = Users.userID;`;
-        const query2 = `SELECT Users.userID AS "User ID", Users.userName AS "User Name" FROM Users;`;
-        const [preferences] = await db.query(query1)
-        const [users] = await db.query(query2)
+        const query1 = `CALL sp_select_features_table()`;
+        const query2 = `CALL sp_select_features_table_helper1()`;
+        const [preferencesResult] = await db.query(query1)
+        const preferences = preferencesResult[0]
+        const [usersResult] = await db.query(query2)
+        const users = usersResult[0]
     
         res.status(200).json({ preferences, users });  // Send the results to the frontend
 

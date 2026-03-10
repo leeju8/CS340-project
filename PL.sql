@@ -74,6 +74,22 @@ END //
 DELIMITER ;
 
 -- Features table
+DROP PROCEDURE IF EXISTS sp_select_features_table;
+DELIMITER //
+CREATE PROCEDURE sp_select_features_table()
+BEGIN
+    SELECT Users.userID AS "User ID", Users.userName AS "User Name", Preferences.settingID AS "Setting ID", Preferences.settingName AS "Setting Name", Preferences.settingValue AS "Setting Value" FROM Preferences \
+        JOIN Users ON Preferences.userID = Users.userID;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_select_features_table_helper1;
+DELIMITER //
+CREATE PROCEDURE sp_select_features_table_helper1()
+BEGIN
+    SELECT Users.userID AS "User ID", Users.userName AS "User Name" FROM Users;
+END //
+DELIMITER ;
 
 -- =====================================================
 -- RESET TABLES PROCEDURE
