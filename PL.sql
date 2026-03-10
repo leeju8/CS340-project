@@ -21,7 +21,32 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Invoices table
+DROP PROCEDURE IF EXISTS sp_select_invoices_table;
+DELIMITER //
+CREATE PROCEDURE sp_select_invoices_table()
+BEGIN
+    SELECT Invoices.invoiceID AS "Invoice ID", Invoices.invoiceDate AS "Invoice Date", Invoices.billingAddress AS "Billing Address", Users.userID AS "User ID", Users.userName AS "User Name", Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name" FROM Invoices \
+        INNER JOIN Users ON Invoices.userID = Users.userID \
+        INNER JOIN Subscriptions ON Invoices.subscriptionID = Subscriptions.subscriptionID;
+END //
+DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_select_invoices_table_helper1;
+DELIMITER //
+CREATE PROCEDURE sp_select_invoices_table_helper1()
+BEGIN
+    SELECT Users.userID AS "User ID", Users.userName AS "User Name" FROM Users;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_select_invoices_table_helper2;
+DELIMITER //
+CREATE PROCEDURE sp_select_invoices_table_helper2()
+BEGIN
+    SELECT Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name" FROM Subscriptions;
+END //
+DELIMITER ;
 
 -- =====================================================
 -- RESET TABLES PROCEDURE

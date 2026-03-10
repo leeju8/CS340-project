@@ -44,14 +44,15 @@ app.get('/users', async (req, res) => {
 app.get('/invoices', async (req, res) => {
     try {
         // Create and execute our queries
-        const query1 = `SELECT Invoices.invoiceID AS "Invoice ID", Invoices.invoiceDate AS "Invoice Date", Invoices.billingAddress AS "Billing Address", Users.userID AS "User ID", Users.userName AS "User Name", Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name" FROM Invoices \
-            INNER JOIN Users ON Invoices.userID = Users.userID \
-            INNER JOIN Subscriptions ON Invoices.subscriptionID = Subscriptions.subscriptionID;`;
-        const query2 = `SELECT Users.userID AS "User ID", Users.userName AS "User Name" FROM Users;`;
-        const query3 = `SELECT Subscriptions.subscriptionID AS "Subscription ID", Subscriptions.subscriptionName AS "Subscription Name" FROM Subscriptions;`;
-        const [invoices] = await db.query(query1)
-        const [users] = await db.query(query2)
-        const [subscriptions] = await db.query(query3)
+        const query1 = `CALL sp_select_invoices_table()`;
+        const query2 = `CALL sp_select_invoices_table_helper1()`;
+        const query3 = `CALL sp_select_invoices_table_helper2()`;
+        const [invoicesResult] = await db.query(query1);
+        const invoices = invoicesResult[0];
+        const [usersResult] = await db.query(query2);
+        const users = usersResult[0];
+        const [subscriptionsResult] = await db.query(query3);
+        const subscriptions = subscriptionsResult[0];
     
         res.status(200).json({ invoices, users, subscriptions });  // Send the results to the frontend
 
