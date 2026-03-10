@@ -1,5 +1,8 @@
 -- Stored Procedures
--- Reset tables
+
+-- =====================================================
+-- RESET TABLES PROCEDURE
+-- =====================================================
 DROP PROCEDURE IF EXISTS sp_reset_tables;
 DELIMITER //
 CREATE PROCEDURE sp_reset_tables()
@@ -115,8 +118,7 @@ END //
 DELIMITER ;
 
 -- =====================================================
--- UNIVERSAL DELETE PROCEDURE (CUD Demonstration)
--- Demonstrates dynamic SQL and referential integrity
+-- UNIVERSAL DELETE PROCEDURE
 -- =====================================================
 
 DROP PROCEDURE IF EXISTS sp_universal_delete;
