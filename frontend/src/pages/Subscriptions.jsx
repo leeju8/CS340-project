@@ -46,7 +46,7 @@ function Subscriptions({ backendURL }) {
     return (
         <>
             <div style={{ display: "flex", gap: "20px" }}>
-                <div style={{ display: "flex", gap: "20px", flexDirection: "column", justifyContent: "center" }}>
+                <div>
                     <h1>Subscriptions</h1>
                     
                     <div>
