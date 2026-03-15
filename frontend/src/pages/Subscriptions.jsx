@@ -46,29 +46,33 @@ function Subscriptions({ backendURL }) {
     return (
         <>
             <div style={{ display: "flex", gap: "20px" }}>
-                <div>
+                <div style={{ display: "flex", gap: "20px", flexDirection: "column", justifyContent: "center" }}>
                     <h1>Subscriptions</h1>
                     
-                    <table>
-                        <thead>
-                            <tr>
-                                {subscriptions.length > 0 && Object.keys(subscriptions[0]).map((header, index) => (
-                                    <th key={index}>{header}</th>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    {subscriptions.length > 0 && Object.keys(subscriptions[0]).map((header, index) => (
+                                        <th key={index}>{header}</th>
+                                    ))}
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {subscriptions.map((subscriptions, index) => (
+                                    <TableRow key={index} rowObject={subscriptions} backendURL={backendURL} refreshObject={getData} tableName="Subscriptions"/>
                                 ))}
-                                <th></th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            {subscriptions.map((subscriptions, index) => (
-                                <TableRow key={index} rowObject={subscriptions} backendURL={backendURL} refreshObject={getData} tableName="Subscriptions"/>
-                            ))}
+                            </tbody>
+                        </table>
+                    </div>
 
-                        </tbody>
-                    </table>
-
-                     <AddSubscriptionForm subscriptions={subscriptions} backendURL={backendURL} refreshSubscriptions={getData} />
-                     <UpdateSubscriptionForm subscriptions={subscriptions} backendURL={backendURL} refreshSubscriptions={getData} />
+                    <div>
+                        <AddSubscriptionForm subscriptions={subscriptions} backendURL={backendURL} refreshSubscriptions={getData} />
+                        <UpdateSubscriptionForm subscriptions={subscriptions} backendURL={backendURL} refreshSubscriptions={getData} />
+                    </div>
 
                 </div>
 
