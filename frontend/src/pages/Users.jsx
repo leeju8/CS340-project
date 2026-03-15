@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';  // Importing useState for managing state in the component
-import TableRow from '../components/TableRow';
-import AddUserForm from '../components/AddUserForm';
-import UpdateUserForm from '../components/UpdateUserForm';
+import TableRowNoDelete from '../components/TableRowNoDelete';
 
 
 function Users({ backendURL }) {
@@ -43,20 +41,17 @@ function Users({ backendURL }) {
                         {users.length > 0 && Object.keys(users[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
-                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {users.map((users, index) => (
-                        <TableRow key={index} rowObject={users} backendURL={backendURL} refreshObject={getData} tableName="Users"/>
+                        <TableRowNoDelete key={index} rowObject={users} backendURL={backendURL} refreshObject={getData} tableName="Users"/>
                     ))}
 
                 </tbody>
             </table>
             
-            <AddUserForm subscriptions={subscriptions} backendURL={backendURL} refreshUsers={getData} />
-            <UpdateUserForm users ={users} subscriptions={subscriptions} backendURL={backendURL} refreshUsers={getData} />
         </>
     );
 
