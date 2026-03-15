@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';  // Importing useState for managing
 import TableRow from '../components/TableRow';
 import AddPreferenceForm from '../components/AddPreferenceForm';
 import UpdatePreferenceForm from '../components/UpdatePreferenceForm';
+import TableRowNoDelete from '../components/TableRowNoDelete';
 
 function Preferences({ backendURL }) {
 
@@ -42,20 +43,16 @@ function Preferences({ backendURL }) {
                         {preferences.length > 0 && Object.keys(preferences[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
-                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {preferences.map((preferences, index) => (
-                        <TableRow key={index} rowObject={preferences} backendURL={backendURL} refreshObject={getData} tableName="Preferences"/>
+                        <TableRowNoDelete key={index} rowObject={preferences} backendURL={backendURL} refreshObject={getData} tableName="Preferences"/>
                     ))}
 
                 </tbody>
             </table>
-
-            <AddPreferenceForm users={users} backendURL={backendURL} refreshPreferences={getData} />
-            <UpdatePreferenceForm preferences={preferences} users={users} backendURL={backendURL} refreshPreferences={getData} />
         </>
     );
 
